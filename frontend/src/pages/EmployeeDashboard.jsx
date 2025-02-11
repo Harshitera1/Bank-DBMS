@@ -12,23 +12,18 @@ function EmployeeDashboard() {
       .get("http://localhost:5000/api/employees") // Ensure this matches your backend route
       .then((response) => {
         console.log("Response received:", response.data); // Debugging Log
-        setUsers(response.data); // Update the state with the fetched employee data
+        setUsers(response.data);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching employee data:", error);
-        setError(error.message); // Capture error message
+        setError(error.message);
         setLoading(false);
       });
   }, []);
 
-  if (loading) {
-    return <p className="text-blue-500">Loading employee data...</p>;
-  }
-
-  if (error) {
-    return <p className="text-red-500">Error: {error}</p>;
-  }
+  if (loading) return <p className="text-blue-500">Loading employee data...</p>;
+  if (error) return <p className="text-red-500">Error: {error}</p>;
 
   return (
     <div className="p-4">
@@ -37,7 +32,7 @@ function EmployeeDashboard() {
         {users.length > 0 ? (
           users.map((user) => (
             <li key={user.id} className="border-b py-2">
-              {user.name}
+              {user.name} - {user.role}
             </li>
           ))
         ) : (
