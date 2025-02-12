@@ -1,12 +1,10 @@
 const express = require("express");
-const { initialize } = require("./database/dbConfig");
-
 const app = express();
-const PORT = 5000;
+const userRoutes = require("./routes/userRoutes"); // Ensure correct path
+const employeeRoutes = require("./routes/employeeRoutes"); // Corrected line
 
-async function startServer() {
-  await initialize(); // Connect to Oracle DB
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+app.use(express.json());
+app.use("/api/users", userRoutes); // Route for users
+app.use("/api/employees", employeeRoutes); // Route for employees
 
-startServer();
+app.listen(5000, () => console.log("Server running on port 5000"));

@@ -1,7 +1,7 @@
 const oracledb = require("oracledb");
 
 const dbConfig = {
-  user: "user",
+  user: "WORK",
   password: "qwerty",
   connectString: "localhost/XE", // Adjusted for Oracle XE
 };
